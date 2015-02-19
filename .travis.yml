@@ -15,7 +15,7 @@ script:
 
 addons:
   code_climate:
-    repo_token: 0
+    repo_token: 27fefdd920bc01066288a69e24469db3c9b33ef397a99f819622bc96aea604b7
 
 after_script:
   - cat coverage/report-lcov/lcov.info | node_modules/.bin/codeclimate
