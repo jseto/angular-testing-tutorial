@@ -16,6 +16,7 @@ gulp.task('browser-sync', function() {
             	'/': path.client,
             }
         },
+        notify: false,
         open: false,
         port: project.port
     });
