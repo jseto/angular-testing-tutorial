@@ -2,6 +2,9 @@
 
 //* App Module 
 
-angular.module('myApp', [
-]);
+angular.module('app', [
+])
+
+.controller('appController', function(){
+});
 
