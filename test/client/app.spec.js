@@ -1,6 +1,6 @@
 'use strict';
 
-describe('myApp', function() {
+describe('app unit test', function() {
 
 	beforeEach(module('myApp'));
 
