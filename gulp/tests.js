@@ -20,7 +20,7 @@ var getBrowserFromCLI = function() {   		//CLI = Command Line Interface
 
 gulp.task('test:unit', function (done) {
 	var opts = {
-		configFile: path.test + 'karma.conf.js',
+		configFile: path.test.base + 'karma.conf.js',
 		singleRun: true,
 		autoWatch: false,
 	    reporters: [
@@ -38,15 +38,9 @@ gulp.task('test:unit', function (done) {
 	karma.start( opts , done);
 });
 
-gulp.task('watch:test:unit:quiet', function (done) {
-	karma.start({
-		configFile: path.test + 'karma.conf.js',
-	}, done);
-});
-
 gulp.task('watch:test:unit', function (done) {
 	karma.start({
-		configFile: path.test + 'karma.conf.js',
+		configFile: path.test.base + 'karma.conf.js',
 		reporters: [
 			'beep',
 			'progress'
@@ -67,7 +61,7 @@ gulp.task('test:e2e', ['browser-sync'], function(done){
 		project.test.e2e.files 
 	)
 	.pipe( protractorInst.protractor({
-		configFile: path.test + 'protractor.conf.js',
+		configFile: path.test.base + 'protractor.conf.js',
 		args: args
 	}))
 	.on('error', function(e) { 

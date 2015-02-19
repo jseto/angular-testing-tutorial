@@ -13,9 +13,7 @@ gulp.task('browser-sync', function() {
         server: {
             baseDir: path.client,
             routes: {
-            	'/lib': path.lib,
-            	'/docs': path.docs,
-            	'/docs/api': path.docs,
+            	'/': path.client,
             }
         },
         open: false,

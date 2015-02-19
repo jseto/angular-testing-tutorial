@@ -16,6 +16,10 @@ var path = {
 	coverage: basePath + '/coverage/'
 };
 
+var karmaPreprocessors = {};
+karmaPreprocessors[ path.test + '**/*.html' ] = 'ng-html2js';
+karmaPreprocessors[ path.base + '/{client,client/!(models|bower_components)/**}/*.js' ] = 'coverage';
+
 module.exports = {
 	port: 3000,
 	path: path,
@@ -30,15 +34,15 @@ module.exports = {
 			files : [
 				path.bower + 'angular/angular.js',
 				path.bower + 'angular-mocks/angular-mocks.js',
-				path.bower + 'js-lib/lib/**/*.js',
 				path.client + '*.js',
-				path.test.client + '/**/*.js'
+				path.test.client + '**/*.js'
 			],
 			exclude : [
 				path.test.client + '**/*.conf.js',
 				path.test.client + '**/*e2e-spec.js',
 				path.test.client + '**/*pageobject.js'
 		    ],
+		    preprocessors: karmaPreprocessors
 		},
 		e2e: {
 			files: [
