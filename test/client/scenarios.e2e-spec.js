@@ -1,6 +1,6 @@
 'use strict';
 
-describe('myApp', function() {
+describe('app e2e test', function() {
 	var indexPage = require('./index-pageobject.js');
 
 	browser.get('/');
