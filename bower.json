@@ -1,0 +1,15 @@
+{
+  "name": "js-seed",
+  "description": "A starter project Angular",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jseto/js-seed.git",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "1.3.x",
+    "angular-mocks": "~1.3.x",
+    "bootstrap": "~3.x.x"
+  },
+  "authors": [
+    "jseto <jsetojseto@gmail.com>"
+  ]
+}

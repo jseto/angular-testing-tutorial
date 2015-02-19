@@ -1,0 +1,20 @@
+{
+  "globalstrict": true,
+  "globals": {
+    "angular": false,
+    "describe": false,
+    "it": false,
+    "expect": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "spyOn": false,
+    "module": false,
+    "inject": false,
+    "protractor": false,
+    "browser": false,
+    "element": false,
+    "by": false,
+    "require": false
+  },
+  "node": true
+}
