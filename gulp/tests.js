@@ -8,7 +8,6 @@ var runSequence = require( 'run-sequence' );
 var browserSync = require( 'browser-sync' );
 var karma = require('karma').server;
 var protractorInst = require('gulp-protractor');
-var gutil = require('gulp-util');
 
 var getBrowserFromCLI = function() {   		//CLI = Command Line Interface
 	var cliOption = process.argv.slice(3)[0]; 
@@ -40,11 +39,7 @@ gulp.task('test:unit', function (done) {
 
 gulp.task('watch:test:unit', function (done) {
 	karma.start({
-		configFile: path.test.base + 'karma.conf.js',
-		reporters: [
-			'beep',
-			'progress'
-		]
+		configFile: path.test.base + 'karma.conf.js'
 	}, done);
 });
 
@@ -65,7 +60,6 @@ gulp.task('test:e2e', ['browser-sync'], function(done){
 		args: args
 	}))
 	.on('error', function(e) { 
-		gutil.beep();
 		browserSync.exit();
 		throw e; 
 	})
