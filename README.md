@@ -1,7 +1,8 @@
 js-seed [![Build Status](https://travis-ci.org/jseto/js-seed.svg?branch=master)](https://travis-ci.org/jseto/js-seed)
 ============
 
-A starter project for Angular.
+__A starter project for Angular.__
+
 Based on [Angular][angular]'s [angular-seed](http://github.com/angular/angular-seed)  but using gulp.
     
 This project is an application skeleton for a basic [AngularJS](http://angularjs.org/) web app. Additionally it takes benefit form [Bootstrap][bootstrap] responsive framework. It is ready for [Travis CI][travis] continuous integration platform.
@@ -164,15 +165,7 @@ development server.
 ## Developing
 
 We provide several tools to help in the app development phase. Basically are watchers, a browser re-loader and the server itself.
-Although you can change the behaviour of the server, the proposed configuration covers all the need you can have and we will focus on client side development. Anyway, if you want a server side development, just invoke the npm task
-
-```
-gulp develop:server
-```
-
-this task will star the test server watcher, the server test watcher and will keep an eye to the files located in the `server` folder. If a file change is detected the server will be restarted.
-
-When developing client side, which is the main effort you have to do in this environment, we provide a handy task
+Although you can change the behaviour of the server, the proposed configuration covers all the need you can have and we will focus on client side development. 
 
 ```
 gulp develop
@@ -185,6 +178,12 @@ gulp
 ```
 
 this task will start the server and the client unit test watcher.
+
+If you only want the server without the tests invoke
+
+```
+gulp server:start
+```
 
 ## Continuous Integration
 

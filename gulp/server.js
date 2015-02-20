@@ -6,7 +6,7 @@ var path = project.path;
 
 var browserSync = require( 'browser-sync' );
 
-gulp.task('server', ['browser-sync']);
+gulp.task('server:start', ['browser-sync']);
 
 gulp.task('browser-sync', function() {
     browserSync({
