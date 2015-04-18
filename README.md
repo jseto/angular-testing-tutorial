@@ -162,6 +162,36 @@ Como habrás visto, el test falla!!!
 
 Ahora, nuestro trabajo consiste en hacer que el test no falle.
 
+Primera aproximación a nuestro filtro
+-------------------------------------
+
+El mensaje de error que nos da el test es 
+
+```
+ReferenceError: capitalizarFilter is not defined
+```
+
+y ciertamente tiene razón, nuestro filtro no esta definido en ninguna parte. Vamos a corregir este error. Para ello creamos un un fichero que llamaremos `capitalizar.js` en una carpeta llamada `utiles` que crearemos dentro de la carpeta `cliente`. El contenido del fichero creado será el siguiente:
+
+```js
+'use strict';
+
+angular.module( 'utiles', [] )
+
+.filter( 'capitalizar', function capitalizarFactory(){
+	return function(input) {
+		return input;
+	};
+});
+```
+
+Esto solamente nos define nuestro filtro en AngularJS, pero lo único que hace es devolver la misma cadena que hemos pasado como parámetro al filtro, es decir, poca cosa a excepción de eliminar el error que teníamos.
+
+Guardamos el archivo `capitalizar.js' o bien ejecutamos en la linea de comandos
+
+```
+git checkout -f leccion2-2
+```
 
 
 # Licencia
