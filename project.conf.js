@@ -35,6 +35,7 @@ module.exports = {
 				path.bower + 'angular/angular.js',
 				path.bower + 'angular-mocks/angular-mocks.js',
 				path.client + '*.js',
+				path.client + 'utiles/*.js',
 				path.test.client + '**/*.js'
 			],
 			exclude : [
