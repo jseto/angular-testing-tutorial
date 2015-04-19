@@ -1,4 +1,13 @@
 describe('Dada una cadena, el filtro capitalizar', function() {
+	var capitalizarFilter;
+
+	beforeEach( function(){
+		module('utiles');
+	});
+
+	beforeEach( inject( function( _capitalizarFilter_ ){
+		capitalizarFilter = _capitalizarFilter_;
+	}));
 
 	it('debería poner todas las palabras con la primera letra en mayúscula', function() {
 		// llamamos a nuestro filtro con alguna cadena a modo de prueba

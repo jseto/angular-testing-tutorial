@@ -193,6 +193,69 @@ Guardamos el archivo `capitalizar.js' o bien ejecutamos en la linea de comandos
 git checkout -f leccion2-2
 ```
 
+El test sigue fallando con el mismo mensaje de error puesto que en nuestro fichero de test `capitalizarFilter` sigue sin estar definido. Para definir `capitalizarFilter` vamos a usar la función `beforeEach` de Jasmine y la inyección de dependencias de AngularJS.
+
+La función `beforeEach` de Jasmine indica que la función que pasamos como parámetro se va a ejecutar antes de que se ejecute cada uno de los test, es decir, en `beforeEach` pondremos código de inicialización. Podemos invocar beforeEach tantas veces como queramos. Análogamente, existe la función `afterEach` de Jasmine que se ejecutará al terminar cada uno de los test.
+
+El siguiente fragmento de código, indica que se cargue el modulo `utiles` antes de que se invoque cada uno los test que le suceden.
+
+```js
+	beforeEach( function(){
+		module('utiles');
+	});
+```
+
+Para tener acceso a `capitalizarFilter` usaremos la inyección de dependencias pero con una sintaxis diferente a cuando la usamos en código normal. Para ello usaremos el método `inject`. Si usamos como prefijo y sufijo el carácter '_', angular lo eliminara e inyectará el elemento correspondiente sin el afijo '_'. Con este truco, podemos usar el identificador original de nuestro elemento en el test. Como queremos que `capitalizarFilter` se inyecte cada vez que ejecutamos un test, haremos la inyección dentro de un `beforeEach` del siguiente modo:
+
+```js
+	var capitalizarFilter;
+	beforeEach( inject( function( _capitalizarFilter_ ){
+		capitalizarFilter = _capitalizarFilter_;
+	}));
+```
+
+Así pues, nuestro fichero de test quedara como:
+
+```js
+describe('Dada una cadena, el filtro capitalizar', function() {
+	var capitalizarFilter;
+
+	beforeEach( function(){
+		module('utiles');
+	});
+
+	beforeEach( inject( function( _capitalizarFilter_ ){
+		capitalizarFilter = _capitalizarFilter_;
+	}));
+
+	it('debería poner todas las palabras con la primera letra en mayúscula', function() {
+		// llamamos a nuestro filtro con alguna cadena a modo de prueba
+		var resultado = capitalizarFilter( 'federico garcía lorca' );
+
+		// ahora, vamos a ver si el resultado es el que esperamos.
+		var resultadoEsperado = 'Federico García Lorca';
+
+		expect( resultado ).toBe( resultadoEsperado );
+	});
+
+	it('debería devolver las palabras que sean artículos en minúsculas', function() {
+		var resultado = capitalizarFilter( 'miguel de cervantes saavedra' );
+
+		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
+	});
+
+	it('debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena', function() {
+		var resultado = capitalizarFilter( 'la lola de españa' );
+
+		expect( resultado ).toBe( 'La Lola de España' );
+	});
+});
+```
+
+Para no tener que escribir, puedes invocar lo siguiente en la linea de comandos:
+
+```
+git checkout -f leccion2-3
 
 # Licencia
 
