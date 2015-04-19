@@ -48,7 +48,7 @@ Dada una cadena, el filtro capitalizar
 ```
 Seguimos teniendo nuestras especificaciones en español normal, pero así quedan más claras que cuando definimos nuestro filtro un poco más arriba. 
 
-Los que usáis _Sublime Text_ como editor, podéis instalaros el 'plugin' _Jasmine Scafold_ que convierte el texto de la especificación anterior en sintaxis para Jasmine. [Jasmine][jasmine] provee una serie de funciones que nos facilitan la escritura de test en JavaScript. 
+Los que usáis [Sublime Text][sublime] como editor, podéis instalaros el 'plugin' [Jasmine Scaffold][jasmine-scaffold] que convierte el texto de la especificación anterior en sintaxis para Jasmine. [Jasmine][jasmine] provee una serie de funciones que nos facilitan la escritura de test en JavaScript. 
 
 Ahora vamos a usar las funciones `describe` e `it`. Así, nuestro test va a tomar la siguiente forma:
 
@@ -189,3 +189,5 @@ __Angular Testing Tutorial__ se distribuye bajo licencia del [MIT](http://openso
 [gulp]: http://gulpjs.com/
 [jsseed]: http://github.com/jseto/js-seed.git
 [angular-testing-tutorial]: http://github.com/jseto/angular-testing-tutorial.git
+[sublime]: http://www.sublimetext.com/3
+[jasmine-scaffold]: https://packagecontrol.io/packages/Jasmine%20Scaffold
