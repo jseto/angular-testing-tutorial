@@ -256,6 +256,8 @@ Para no tener que escribir, puedes invocar lo siguiente en la linea de comandos:
 
 ```
 git checkout -f leccion2-3
+```
+
 
 # Licencia
 
