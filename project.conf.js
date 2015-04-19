@@ -18,7 +18,7 @@ var path = {
 
 var karmaPreprocessors = {};
 karmaPreprocessors[ path.test + '**/*.html' ] = 'ng-html2js';
-karmaPreprocessors[ path.base + '/{client,client/!(models|bower_components)/**}/*.js' ] = 'coverage';
+karmaPreprocessors[ path.base + '/{client,client/!(bower_components)/**}/*.js' ] = 'coverage';
 
 module.exports = {
 	port: 3000,
@@ -35,7 +35,7 @@ module.exports = {
 				path.bower + 'angular/angular.js',
 				path.bower + 'angular-mocks/angular-mocks.js',
 				path.client + '*.js',
-				path.client + 'utiles/*.js',
+				path.client + '!(bower_components)/**/*.js',
 				path.test.client + '**/*.js'
 			],
 			exclude : [
