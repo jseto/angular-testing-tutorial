@@ -44,7 +44,7 @@ Siguiendo los principios del Desarrollo Orientado a Tests (TDD), antes de hacer 
 Dada una cadena, el filtro capitalizar
 	debería poner todas las palabras con la primera letra en mayúscula
 	debería devolver las palabras que sean artículos en minúsculas
-	debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena
+	debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas
 ```
 Seguimos teniendo nuestras especificaciones en español normal, pero así quedan más claras que cuando definimos nuestro filtro un poco más arriba. 
 
@@ -63,7 +63,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 
 	});
 
-	it('debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena', function() {
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
 
 	});
 });
@@ -90,7 +90,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 
 	});
 
-	it('debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena', function() {
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
 
 	});
 });
@@ -131,7 +131,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
 	});
 
-	it('debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena', function() {
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
 		var resultado = capitalizarFilter( 'la lola de españa' );
 
 		expect( resultado ).toBe( 'La Lola de España' );
@@ -147,8 +147,7 @@ git checkout -f leccion2-1
 
 lo cual pondrá tu proyecto en el estado del tutorial que nos encontramos ahora.
 
-Vamos a ejecutar nuestro primer test
-------------------------------------
+### Vamos a ejecutar nuestro primer test ###
 
 Para ejecutar el test, simplemente escribe en la linea de comandos
 
@@ -162,8 +161,8 @@ Como habrás visto, el test falla!!!
 
 Ahora, nuestro trabajo consiste en hacer que el test no falle.
 
-Primera aproximación a nuestro filtro
--------------------------------------
+### Primera aproximación a nuestro filtro ###
+
 
 El mensaje de error que nos da el test es 
 
@@ -193,9 +192,9 @@ Guardamos el archivo `capitalizar.js' o bien ejecutamos en la linea de comandos
 git checkout -f leccion2-2
 ```
 
-El test sigue fallando con el mismo mensaje de error puesto que en nuestro fichero de test `capitalizarFilter` sigue sin estar definido. Para definir `capitalizarFilter` vamos a usar la función `beforeEach` de Jasmine y la inyección de dependencias de AngularJS.
+El test sigue fallando con el mismo mensaje de error puesto que en nuestro fichero de test, el filtro `capitalizarFilter` sigue sin estar definido. Para definir `capitalizarFilter` vamos a usar la función `beforeEach` de Jasmine y la inyección de dependencias de AngularJS.
 
-La función `beforeEach` de Jasmine indica que la función que pasamos como parámetro se va a ejecutar antes de que se ejecute cada uno de los test, es decir, en `beforeEach` pondremos código de inicialización. Podemos invocar beforeEach tantas veces como queramos. Análogamente, existe la función `afterEach` de Jasmine que se ejecutará al terminar cada uno de los test.
+La función `beforeEach` de Jasmine indica que la función que pasamos como parámetro se va a ejecutar antes de que se ejecute cada uno de los test, es decir, en `beforeEach` pondremos el código de inicialización necesario para ejecutar nuestros tests. Podemos invocar `beforeEach` tantas veces como queramos. Análogamente, existe la función `afterEach` de Jasmine que se ejecutará al terminar cada uno de los test.
 
 El siguiente fragmento de código, indica que se cargue el modulo `utiles` antes de que se invoque cada uno los test que le suceden.
 
@@ -205,7 +204,7 @@ El siguiente fragmento de código, indica que se cargue el modulo `utiles` antes
 	});
 ```
 
-Para tener acceso a `capitalizarFilter` usaremos la inyección de dependencias pero con una sintaxis diferente a cuando la usamos en código normal. Para ello usaremos el método `inject`. Si usamos como prefijo y sufijo el carácter '_', angular lo eliminara e inyectará el elemento correspondiente sin el afijo '_'. Con este truco, podemos usar el identificador original de nuestro elemento en el test. Como queremos que `capitalizarFilter` se inyecte cada vez que ejecutamos un test, haremos la inyección dentro de un `beforeEach` del siguiente modo:
+Para tener acceso a `capitalizarFilter` usaremos la inyección de dependencias pero con una sintaxis diferente a cuando la usamos en código normal. Para ello usaremos el método `inject`. Si usamos como prefijo y sufijo el carácter '\_', angular lo eliminara e inyectará el elemento correspondiente sin el afijo '_'. Con este truco, podemos usar el identificador original de nuestro elemento en el test. Como queremos que `capitalizarFilter` se inyecte cada vez que ejecutamos un test, haremos la inyección dentro de un `beforeEach` del siguiente modo:
 
 ```js
 	var capitalizarFilter;
@@ -244,7 +243,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
 	});
 
-	it('debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena', function() {
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
 		var resultado = capitalizarFilter( 'la lola de españa' );
 
 		expect( resultado ).toBe( 'La Lola de España' );
@@ -257,6 +256,12 @@ Para no tener que escribir, puedes invocar lo siguiente en la linea de comandos:
 ```
 git checkout -f leccion2-3
 ```
+
+Como observaras, el test sigue sin pasar pero ahora ya no es debido a un error de sintaxis o que falte definir algo. Ahora falla porque nuestras expectativas no se cumplen. Estas no se cumplen precisamente porque nuestro filtro `capitalizarFilter` no hace lo que se supone que tiene que hacer.
+
+Vamos pues a implementar `capitalizarFilter` para que nuestros test acaben pasando.
+
+
 
 
 # Licencia

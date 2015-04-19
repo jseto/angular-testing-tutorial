@@ -25,7 +25,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
 	});
 
-	it('debería poner la primera letra en mayúsculas si el articulo es la primera palabra de la cadena', function() {
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
 		var resultado = capitalizarFilter( 'la lola de españa' );
 
 		expect( resultado ).toBe( 'La Lola de España' );
