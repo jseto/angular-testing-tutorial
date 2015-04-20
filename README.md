@@ -131,7 +131,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
 	});
 
-	it('debería poner la primera letra de la cadena en mayúsculas independientemente del tipo de palabra', function() {
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
 		var resultado = capitalizarFilter( 'la lola de españa' );
 
 		expect( resultado ).toBe( 'La Lola de España' );
@@ -147,8 +147,7 @@ git checkout -f leccion2-1
 
 lo cual pondrá tu proyecto en el estado del tutorial que nos encontramos ahora.
 
-Vamos a ejecutar nuestro primer test
-------------------------------------
+### Vamos a ejecutar nuestro primer test ###
 
 Para ejecutar el test, simplemente escribe en la linea de comandos
 
@@ -161,6 +160,216 @@ esto ejecuta un servidor web local y los test unitarios. Cada vez que cambie un 
 Como habrás visto, el test falla!!!
 
 Ahora, nuestro trabajo consiste en hacer que el test no falle.
+
+### Primera aproximación a nuestro filtro ###
+
+
+El mensaje de error que nos da el test es 
+
+```
+ReferenceError: capitalizarFilter is not defined
+```
+
+y ciertamente tiene razón, nuestro filtro no esta definido en ninguna parte. Vamos a corregir este error. Para ello creamos un un fichero que llamaremos `capitalizar.js` en una carpeta llamada `utiles` que crearemos dentro de la carpeta `cliente`. El contenido del fichero creado será el siguiente:
+
+```js
+'use strict';
+
+angular.module( 'utiles', [] )
+
+.filter( 'capitalizar', function capitalizarFn(){
+	return function(input) {
+		return input;
+	};
+});
+```
+
+Esto solamente nos define nuestro filtro en AngularJS, pero lo único que hace es devolver la misma cadena que hemos pasado como parámetro al filtro, es decir, poca cosa a excepción de eliminar el error que teníamos.
+
+Guardamos el archivo `capitalizar.js' o bien ejecutamos en la linea de comandos
+
+```
+git checkout -f leccion2-2
+```
+
+El test sigue fallando con el mismo mensaje de error puesto que en nuestro fichero de test, el filtro `capitalizarFilter` sigue sin estar definido. Para definir `capitalizarFilter` vamos a usar la función `beforeEach` de Jasmine y la inyección de dependencias de AngularJS.
+
+La función `beforeEach` de Jasmine indica que la función que pasamos como parámetro se va a ejecutar antes de que se ejecute cada uno de los test, es decir, en `beforeEach` pondremos el código de inicialización necesario para ejecutar nuestros tests. Podemos invocar `beforeEach` tantas veces como queramos. Análogamente, existe la función `afterEach` de Jasmine que se ejecutará al terminar cada uno de los test.
+
+El siguiente fragmento de código, indica que se cargue el modulo `utiles` antes de que se invoque cada uno los test que le suceden.
+
+```js
+	beforeEach( function(){
+		module('utiles');
+	});
+```
+
+Para tener acceso a `capitalizarFilter` usaremos la inyección de dependencias pero con una sintaxis diferente a cuando la usamos en código normal. Para ello usaremos el método `inject`. Si usamos como prefijo y sufijo el carácter '\_', angular lo eliminara e inyectará el elemento correspondiente sin el afijo '_'. Con este truco, podemos usar el identificador original de nuestro elemento en el test. Como queremos que `capitalizarFilter` se inyecte cada vez que ejecutamos un test, haremos la inyección dentro de un `beforeEach` del siguiente modo:
+
+```js
+	var capitalizarFilter;
+	beforeEach( inject( function( _capitalizarFilter_ ){
+		capitalizarFilter = _capitalizarFilter_;
+	}));
+```
+
+Así pues, nuestro fichero de test quedara como:
+
+```js
+describe('Dada una cadena, el filtro capitalizar', function() {
+	var capitalizarFilter;
+
+	beforeEach( function(){
+		module('utiles');
+	});
+
+	beforeEach( inject( function( _capitalizarFilter_ ){
+		capitalizarFilter = _capitalizarFilter_;
+	}));
+
+	it('debería poner todas las palabras con la primera letra en mayúscula', function() {
+		// llamamos a nuestro filtro con alguna cadena a modo de prueba
+		var resultado = capitalizarFilter( 'federico garcía lorca' );
+
+		// ahora, vamos a ver si el resultado es el que esperamos.
+		var resultadoEsperado = 'Federico García Lorca';
+
+		expect( resultado ).toBe( resultadoEsperado );
+	});
+
+	it('debería devolver las palabras que sean artículos en minúsculas', function() {
+		var resultado = capitalizarFilter( 'miguel de cervantes saavedra' );
+
+		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
+	});
+
+	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
+		var resultado = capitalizarFilter( 'la lola de españa' );
+
+		expect( resultado ).toBe( 'La Lola de España' );
+	});
+});
+```
+
+Para no tener que escribir, puedes invocar lo siguiente en la linea de comandos:
+
+```
+git checkout -f leccion2-3
+```
+
+Como observaras, el test sigue sin pasar pero ahora ya no es debido a un error de sintaxis o que falte definir algo. Ahora falla porque nuestras expectativas no se cumplen. Estas no se cumplen precisamente porque nuestro filtro `capitalizarFilter` no hace lo que se supone que tiene que hacer.
+
+Vamos pues a implementar `capitalizarFilter` para que nuestros test acaben pasando. La siguiente implementación resuelve el primer test.
+
+```js
+'use strict';
+
+angular.module( 'utiles', [] )
+
+.filter( 'capitalizar', function capitalizarFn(){
+	return function( input ) {
+		var palabras = input.split(' ');
+		var output = [];
+
+		angular.forEach( palabras, function( palabra ){
+			output.push( palabra[0].toUpperCase() + palabra.slice(1) );
+		});
+		return output.join(' ');
+	};
+}); 
+```
+
+Puedes comprobarlo haciendo en la linea de comandos
+
+```
+git checkout -f leccion2-4
+```
+y para completar los tests, necesitaras el siguiente código o algo similar
+
+```js
+'use strict';
+
+angular.module( 'utiles', [] )
+
+.filter( 'capitalizar', function capitalizarFn(){
+	return function( input ) {
+		var palabras = input.split(' ');
+		var output = [];
+		var articulos = 'el, la, los, las, un, una, unos, unas, lo, al, del'.split(', ');
+		var preposiciones = 'a, ante, bajo, cabe, con, contra, de, desde, en, entre, hacia, hasta, para, por, según, sin, so, sobre, tras'.split(', ');
+		var excepciones = articulos.concat( preposiciones );
+
+		angular.forEach( palabras, function( palabra, index ){
+			if ( excepciones.indexOf( palabra ) < 0 || index === 0 ) {
+				palabra = palabra[0].toUpperCase() + palabra.slice(1);
+			}
+			output.push( palabra );
+		});
+
+		return output.join(' ');
+	};
+}); 
+```
+
+que puedes obtener escribiendo
+
+```
+git checkout -f leccion2-5
+```
+Como veras, todos los test pasan. De todas formas, seguramente te has preguntado si los test que hemos escritos son suficientes. La respuesta es no. Los test deben ser independientes de la implementación y si alguien cambia la implementación en un futuro y olvida incluir algunas preposiciones, los test podrían llegar a pasar y el código no ser correcto. Así pues, vamos a añadir una expectativa más para hacer el test más completo.
+
+```js
+	it('debería funcionar con todos los artículos y preposiciones', function(){
+		var cadena = 'a el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
+		var resultadoEsperado = 'A el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
+		expect( capitalizarFilter( cadena ) ).toBe( resultadoEsperado );
+	});
+```
+
+Ahora ya ha llegado el momento de poder disfrutar de nuestra creación. Vamos a jugar con el filtro en una pagina web y vamos a probar nuestro filtro a la antigua!
+
+Para ello vamos a cargar `capitalizar.js` en el `index.html` y añadir código para poder entrar un texto y que nos lo presente filtrado
+
+```html
+	<input ng-model="cadena" />
+	<p>{{cadena|capitalizar}}</p>
+
+	<script src="utiles/capitalizar.js"></script>
+```
+y también debemos modificar el archivo `app.js` para que cargue el modulo _utiles_ al que pertenece nuestro filtro
+
+```js
+angular.module('app', [
+	'utiles'
+])
+```
+estos cambios los tienes en
+
+```
+git checkout -f leccion2-6
+```
+
+Hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera un error que podemos ver en la consola del navegador y un efecto colateral es que se presenta la cadena `{{cadena|capitalizar}}`. Esto es claramente un _bug_ y hay que corregirlo. Para ello crearemos otro test que compruebe que cuando pasamos una cadena vacía, se devuelva una cadena vacía. Siempre que descubrimos un _bug_ hay que generar un test para corregir ese _bug_. Así añadiremos el siguiente código a nuestro test
+
+```js
+	it('debería devolver cadena vacía si se pasa cadena vacía', function(){
+		expect( capitalizarFilter( '' ) ).toBe( '' );
+	});
+```
+
+comprobamos que el test falla y luego corregimos la implementación para que deje de fallar. Añadiendo el siguiente codigo a la implementación deberia corregir nuestro error.
+
+```js
+		if ( !input ) {
+			return '';
+		}
+```
+
+Todas estas correcciones estan en:
+
+```
+git checkout -f leccion2-7
+```
 
 
 
