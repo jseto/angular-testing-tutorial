@@ -13,7 +13,7 @@ Para ejecutar los test del tutorial, debes tener instalado en tu sistema los sig
 - la plataforma [NodeJS][node]
 - el sistema de _buildeo_ [Gulp][gulp]
 
-Gulp se instala una vez tienes NodeJS instalado y funcionando. Es necesario instalarlo de forma global invocando en la linea de comandos:
+Debes instalar **Gulp** cuando tengas **NodeJS** instalado y funcionando. Es necesario instalarlo de forma global invocando en la linea de comandos:
 
 ```
 npm install -g gulp
@@ -36,9 +36,9 @@ Leccion 2. Vamos a crear un filtro
 
 [Tutorial en video][]
 
-Empezaremos por algo sencillo. Un filtro de AngularJS es fácil de crear, tanto el test como la implementación. Lo que va hacer nuestro primer filtro será poner en mayúsculas todas las palabras de una cadena, a excepción de artículos y preposiciones, que estarán en minúscula a no ser que inicien la cadena. A nuestro filtro le llamaremos 'capitalizar'.
+Empezaremos por algo sencillo. Un filtro de AngularJS es fácil de crear, tanto el test como la implementación. Lo que va a hacer nuestro primer filtro será poner en mayúsculas todas las palabras de una cadena, a excepción de artículos y preposiciones, que estarán en minúscula, a no ser que inicien la cadena. A nuestro filtro le llamaremos 'capitalizar'.
 
-Siguiendo los principios del Desarrollo Orientado a Tests (TDD), antes de hacer la implementación, debemos codificar el test. El test lo vamos a definir siguiendo las especificaciones de nuestro filtro, es decir, vamos a escribir que es lo que va a hacer el filtro. Ademas, las escribiremos de la siguiente forma para que nos quede más claro.
+Siguiendo los principios del Desarrollo Guiado por Pruebas (TDD), antes de hacer la implementación, debemos codificar el test. El test lo vamos a definir siguiendo las especificaciones de nuestro filtro, es decir, vamos a escribir que es lo que va a hacer el filtro. Además, escribiremos dichas especificaciones de la siguiente forma para que nos quede más claro.
 
 ```
 Dada una cadena, el filtro capitalizar
@@ -48,7 +48,7 @@ Dada una cadena, el filtro capitalizar
 ```
 Seguimos teniendo nuestras especificaciones en español normal, pero así quedan más claras que cuando definimos nuestro filtro un poco más arriba. 
 
-Los que usáis [Sublime Text][sublime] como editor, podéis instalaros el 'plugin' [Jasmine Scaffold][jasmine-scaffold] que convierte el texto de la especificación anterior en sintaxis para Jasmine. [Jasmine][jasmine] provee una serie de funciones que nos facilitan la escritura de test en JavaScript. 
+Los que usáis [Sublime Text][sublime] como editor, podéis instalaros el _plugin_ [Jasmine Scaffold][jasmine-scaffold] que convierte el texto de la especificación anterior en sintaxis para **Jasmine**. [Jasmine][jasmine] provee una serie de funciones que nos facilitan la escritura de test en JavaScript. 
 
 Ahora vamos a usar las funciones `describe` e `it`. Así, nuestro test va a tomar la siguiente forma:
 
@@ -69,9 +69,9 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 });
 ```
 
-Como se observa, seguimos teniendo nuestras especificaciones en español puro, aunque ahora _decoradas_ con un poco de sintaxis JavaScript. La función `describe` encierra una descripción de nuestro test y la función `it` encierra la descripción de las especificaciones que deben ser verificadas por nuestro test.
+Como se observa, seguimos teniendo nuestras especificaciones en español puro, aunque ahora _decoradas_ con un poco de sintaxis JavaScript. La función `describe` encierra la descripción de nuestro test y la función `it` encierra la descripción de las especificaciones que deben ser verificadas por nuestro test.
 
-Dentro de la función que pasamos en el segundo parámetro de `it` es donde escribiremos nuestras expectativas, es decir, lo que esperamos que pase cuando llamamos a nuestro filtro. Para ello usamos la función `expect`, a la que pasamos un valor que compararemos con una serie de métodos encadenados que nos proporciona `expect` denominados _matchers_ o verificadores. Estos verificadores, nos permiten evaluar si el resultado obtenido es el esperado. Vamos manos a la obra.
+Dentro de la función que pasamos en el segundo parámetro de `it` es donde escribiremos nuestras expectativas, es decir, lo que esperamos que pase cuando llamamos a nuestro filtro. Para ello usamos la función `expect`, a la que pasamos un valor que compararemos con una serie de métodos encadenados que nos proporciona `expect` denominados _matchers_ o verificadores. Estos verificadores, nos permiten evaluar si el resultado obtenido es el esperado. Vamos, manos a la obra.
 
 ```js
 describe('Dada una cadena, el filtro capitalizar', function() {
@@ -108,7 +108,7 @@ y la leemos en ingles, se traduce al español como
 
 > esperamos que el `resultado` sea el `resultadoEsperado`
 
-Fácil no? El método `toBe` es el _matcher_ o verificador. Jasmine nos provee de muchos _matchers_ e incluso podemos hacer los nuestros propios, aunque de momento no vamos a entrar en detalles de ello.
+Fácil no? El método `toBe` es el _matcher_ o verificador. Jasmine nos provee de muchos _matchers_ e incluso podemos hacer los nuestros propios, aunque de momento no vamos a entrar en esos detalles.
 
 Vamos a completar nuestro test
 
@@ -139,7 +139,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 });
 ```
 
-Ya tenemos nuestro test terminado. Guarda tu test en un archivo que se llame `capitalizar.spec.js` dentro de la carpeta 'test/client'. Si no quieres escribir el test, puedes ejecutar lo siguiente en la linea de comandos
+Ya tenemos nuestro test terminado. Guarda tu test en un archivo que se llame `capitalizar.spec.js` dentro de la carpeta 'test/client'. Por convención, llamaremos a los ficheros de test como a los ficheros de la implementación pero con extensión `.spec.js`. Si no quieres escribir el test, puedes ejecutar lo siguiente en la linea de comandos
 
 ```
 git checkout -f leccion2-1
@@ -170,7 +170,7 @@ El mensaje de error que nos da el test es
 ReferenceError: capitalizarFilter is not defined
 ```
 
-y ciertamente tiene razón, nuestro filtro no esta definido en ninguna parte. Vamos a corregir este error. Para ello creamos un un fichero que llamaremos `capitalizar.js` en una carpeta llamada `utiles` que crearemos dentro de la carpeta `cliente`. El contenido del fichero creado será el siguiente:
+y ciertamente tiene razón, nuestro filtro no esta definido en ninguna parte. Vamos a corregir este error. Para ello creamos un un fichero que llamaremos `capitalizar.js` en una carpeta llamada `utiles` que crearemos dentro de la carpeta `cliente`. En realidad puedes darle el nombre que quieras y ponerlo en cualquier carpeta, pero hazlo de forma lógica y siguiendo patrones de buenas practicas. El contenido del fichero creado será el siguiente:
 
 ```js
 'use strict';
@@ -192,11 +192,11 @@ Guardamos el archivo `capitalizar.js' o bien ejecutamos en la linea de comandos
 git checkout -f leccion2-2
 ```
 
-El test sigue fallando con el mismo mensaje de error puesto que en nuestro fichero de test, el filtro `capitalizarFilter` sigue sin estar definido. Para definir `capitalizarFilter` vamos a usar la función `beforeEach` de Jasmine y la inyección de dependencias de AngularJS.
+El test sigue fallando con el mismo mensaje de error puesto que en nuestro fichero de test, el filtro `capitalizarFilter` sigue sin estar definido. Para que `capitalizarFilter` este disponible en nuestro código vamos a usar la función `beforeEach` de Jasmine y la inyección de dependencias de AngularJS.
 
 La función `beforeEach` de Jasmine indica que la función que pasamos como parámetro se va a ejecutar antes de que se ejecute cada uno de los test, es decir, en `beforeEach` pondremos el código de inicialización necesario para ejecutar nuestros tests. Podemos invocar `beforeEach` tantas veces como queramos. Análogamente, existe la función `afterEach` de Jasmine que se ejecutará al terminar cada uno de los test.
 
-El siguiente fragmento de código, indica que se cargue el modulo `utiles` antes de que se invoque cada uno los test que le suceden.
+El siguiente fragmento de código, hace que se cargue el modulo `utiles` antes de que se invoque cada uno los test que le suceden.
 
 ```js
 	beforeEach( function(){
@@ -204,7 +204,7 @@ El siguiente fragmento de código, indica que se cargue el modulo `utiles` antes
 	});
 ```
 
-Para tener acceso a `capitalizarFilter` usaremos la inyección de dependencias pero con una sintaxis diferente a cuando la usamos en código normal. Para ello usaremos el método `inject`. Si usamos como prefijo y sufijo el carácter '\_', angular lo eliminara e inyectará el elemento correspondiente sin el afijo '_'. Con este truco, podemos usar el identificador original de nuestro elemento en el test. Como queremos que `capitalizarFilter` se inyecte cada vez que ejecutamos un test, haremos la inyección dentro de un `beforeEach` del siguiente modo:
+Para tener acceso a `capitalizarFilter` usaremos la inyección de dependencias pero con una sintaxis diferente a cuando la usamos en código normal. Para ello usaremos el método `inject`. Si usamos como prefijo y sufijo el carácter '\_', AngularJS inyectará el elemento correspondiente sin el afijo '_'. Con este truco, podemos usar el identificador original de nuestro elemento en el test. Como queremos que `capitalizarFilter` se inyecte cada vez que ejecutamos un test, haremos la inyección dentro de un `beforeEach` del siguiente modo:
 
 ```js
 	var capitalizarFilter;
@@ -257,7 +257,9 @@ Para no tener que escribir, puedes invocar lo siguiente en la linea de comandos:
 git checkout -f leccion2-3
 ```
 
-Como observaras, el test sigue sin pasar pero ahora ya no es debido a un error de sintaxis o que falte definir algo. Ahora falla porque nuestras expectativas no se cumplen. Estas no se cumplen precisamente porque nuestro filtro `capitalizarFilter` no hace lo que se supone que tiene que hacer.
+### Por fin llegamos a la implementación ###
+
+Como observaras, el test sigue sin pasar, pero ahora ya no es debido a un error de sintaxis o que falte definir algo. Ahora falla porque nuestras expectativas no se cumplen. Estas no se cumplen precisamente porque nuestro filtro `capitalizarFilter` no hace lo que se supone que tiene que hacer.
 
 Vamos pues a implementar `capitalizarFilter` para que nuestros test acaben pasando. La siguiente implementación resuelve el primer test.
 
@@ -284,7 +286,7 @@ Puedes comprobarlo haciendo en la linea de comandos
 ```
 git checkout -f leccion2-4
 ```
-y para completar los tests, necesitaras el siguiente código o algo similar
+y para pasar todos los tests, necesitaras el siguiente código
 
 ```js
 'use strict';
@@ -316,7 +318,8 @@ que puedes obtener escribiendo
 ```
 git checkout -f leccion2-5
 ```
-Como veras, todos los test pasan. De todas formas, seguramente te has preguntado si los test que hemos escritos son suficientes. La respuesta es no. Los test deben ser independientes de la implementación y si alguien cambia la implementación en un futuro y olvida incluir algunas preposiciones, los test podrían llegar a pasar y el código no ser correcto. Así pues, vamos a añadir una expectativa más para hacer el test más completo.
+
+Como veras, todos los test pasan. De todas formas, seguramente te has preguntado si los test que hemos escritos son suficientes. La respuesta es no. Los test deben ser independientes de la implementación y si alguien cambia la implementación en un futuro y olvida incluir algunas preposiciones, los test podrían llegar a pasar y el código no ser correcto. Así pues, vamos a añadir una expectativa más para hacer el test más completo y robusto.
 
 ```js
 	it('debería funcionar con todos los artículos y preposiciones', function(){
@@ -326,9 +329,11 @@ Como veras, todos los test pasan. De todas formas, seguramente te has preguntado
 	});
 ```
 
+### Vamos a jugar ###
+
 Ahora ya ha llegado el momento de poder disfrutar de nuestra creación. Vamos a jugar con el filtro en una pagina web y vamos a probar nuestro filtro a la antigua!
 
-Para ello vamos a cargar `capitalizar.js` en el `index.html` y añadir código para poder entrar un texto y que nos lo presente filtrado
+Para ello vamos a cargar `capitalizar.js` en `index.html` y añadir código para poder entrar un texto y que nos lo presente filtrado
 
 ```html
 	<input ng-model="cadena" />
@@ -349,7 +354,7 @@ estos cambios los tienes en
 git checkout -f leccion2-6
 ```
 
-Hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera un error que podemos ver en la consola del navegador y un efecto colateral es que se presenta la cadena `{{cadena|capitalizar}}`. Esto es claramente un _bug_ y hay que corregirlo. Para ello crearemos otro test que compruebe que cuando pasamos una cadena vacía, se devuelva una cadena vacía. Siempre que descubrimos un _bug_ hay que generar un test para corregir ese _bug_. Así añadiremos el siguiente código a nuestro test
+Pero.... hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera un error que podemos ver en la consola del navegador y un efecto colateral es que se presenta la cadena `{{cadena|capitalizar}}` en el navegador en lugar de la cadena vacía. Esto es claramente un _bug_ y hay que corregirlo. Para ello crearemos otro test que compruebe que cuando pasamos una cadena vacía, se devuelva una cadena vacía. Siempre que descubrimos un _bug_ hay que generar un test para corregir ese _bug_. Así añadiremos el siguiente código a nuestro test
 
 ```js
 	it('debería devolver cadena vacía si se pasa cadena vacía', function(){
@@ -357,7 +362,7 @@ Hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera u
 	});
 ```
 
-comprobamos que el test falla y luego corregimos la implementación para que deje de fallar. Añadiendo el siguiente codigo a la implementación deberia corregir nuestro error.
+comprobamos que el test falla y luego corregimos la implementación para que deje de fallar. Añadiendo el siguiente código a la implementación debería corregir nuestro error.
 
 ```js
 		if ( !input ) {
@@ -365,13 +370,23 @@ comprobamos que el test falla y luego corregimos la implementación para que dej
 		}
 ```
 
-Todas estas correcciones estan en:
+Todas estas correcciones están en:
 
 ```
 git checkout -f leccion2-7
 ```
 
+###Que debemos recordar###
 
+En esta lección hemos abordado varios temas, pero hay unos conceptos que son fundamentales al TDD e independientes de la plataforma o lenguaje que usemos.
+
+* Hay que escribir los test antes que la implementación
+* Los test describen la especificación del problema
+* Los test dan pistas sobre la forma de uso de los componentes que se testean
+* Los test no tienen en cuenta como es la implementación ni deben presumir que tipo de implementación se usará
+* Solo se hace test de la API publica
+* Cuando se prepara un test, primero tiene que fallar para posteriormente escribir la implementación
+* Cuando encontramos un _bug_ hay que escribir un nuevo test que aborde el _bug_
 
 # Licencia
 
