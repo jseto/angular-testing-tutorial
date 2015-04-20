@@ -343,6 +343,21 @@ angular.module('app', [
 	'utiles'
 ])
 ```
+estos cambios los tienes en
+
+```
+git checkout -f leccion2-6
+```
+
+Hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera un error que podemos ver en la consola del navegador y un efecto colateral es que se presenta la cadena `{{cadena|capitalizar}}`. Esto es claramente un _bug_ y hay que corregirlo. Para ello crearemos otro test que compruebe que cuando pasamos una cadena vacía, se devuelva una cadena vacía. Siempre que descubrimos un _bug_ hay que generar un test para corregir ese _bug_. Así añadiremos el siguiente código a nuestro test
+
+```js
+	it('debería devolver cadena vacía si se pasa cadena vacía', function(){
+		expect( capitalizarFilter( '' ) ).toBe( '' );
+	});
+```
+
+comprobamos que el test falla y luego corregimos la implementación para que deje de fallar.
 
 
 # Licencia

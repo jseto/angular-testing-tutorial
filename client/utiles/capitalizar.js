@@ -4,6 +4,10 @@ angular.module( 'utiles', [] )
 
 .filter( 'capitalizar', function capitalizarFn(){
 	return function( input ) {
+		if ( !input ) {
+			return '';
+		}
+		
 		var palabras = input.split(' ');
 		var output = [];
 		var articulos = 'el, la, los, las, un, una, unos, unas, lo, al, del'.split(', ');

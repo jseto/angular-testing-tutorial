@@ -36,4 +36,8 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 		var resultadoEsperado = 'A el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
 		expect( capitalizarFilter( cadena ) ).toBe( resultadoEsperado );
 	});
+
+	it('debería devolver cadena vacía si se pasa cadena vacía', function(){
+		expect( capitalizarFilter( '' ) ).toBe( '' );
+	});
 });
