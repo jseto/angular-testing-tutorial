@@ -357,7 +357,20 @@ Hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera u
 	});
 ```
 
-comprobamos que el test falla y luego corregimos la implementación para que deje de fallar.
+comprobamos que el test falla y luego corregimos la implementación para que deje de fallar. Añadiendo el siguiente codigo a la implementación deberia corregir nuestro error.
+
+```js
+		if ( !input ) {
+			return '';
+		}
+```
+
+Todas estas correcciones estan en:
+
+```
+git checkout -f leccion2-7
+```
+
 
 
 # Licencia
