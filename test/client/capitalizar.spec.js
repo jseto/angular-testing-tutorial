@@ -10,7 +10,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 		expect( resultado ).toBe( resultadoEsperado );
 	});
 
-	it('debería devolver las palabras que sean artículos en minúsculas', function() {
+	it('debería devolver las palabras que sean artículos o preposiciones en minúsculas', function() {
 		var resultado = capitalizarFilter( 'miguel de cervantes saavedra' );
 
 		expect( resultado ).toBe( 'Miguel de Cervantes Saavedra' );
