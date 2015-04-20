@@ -177,7 +177,7 @@ y ciertamente tiene razón, nuestro filtro no esta definido en ninguna parte. Va
 
 angular.module( 'utiles', [] )
 
-.filter( 'capitalizar', function capitalizarFactory(){
+.filter( 'capitalizar', function capitalizarFn(){
 	return function(input) {
 		return input;
 	};
@@ -259,8 +259,31 @@ git checkout -f leccion2-3
 
 Como observaras, el test sigue sin pasar pero ahora ya no es debido a un error de sintaxis o que falte definir algo. Ahora falla porque nuestras expectativas no se cumplen. Estas no se cumplen precisamente porque nuestro filtro `capitalizarFilter` no hace lo que se supone que tiene que hacer.
 
-Vamos pues a implementar `capitalizarFilter` para que nuestros test acaben pasando.
+Vamos pues a implementar `capitalizarFilter` para que nuestros test acaben pasando. La siguiente implementación resuelve el primer test.
 
+```js
+'use strict';
+
+angular.module( 'utiles', [] )
+
+.filter( 'capitalizar', function capitalizarFn(){
+	return function( input ) {
+		var palabras = input.split(' ');
+		var output = [];
+
+		angular.forEach( palabras, function( palabra ){
+			output.push( palabra[0].toUpperCase() + palabra.slice(1) );
+		});
+		return output.join(' ');
+	};
+}); 
+```
+
+Puedes comprobarlo haciendo
+
+```
+git checkout -f leccion2-4
+```
 
 
 
