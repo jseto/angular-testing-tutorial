@@ -26,16 +26,15 @@ git clone https://github.com/jseto/angular-testing-tutorial.git
 npm install
 ```
 
-Leccion 1. Nos familiarizamos con el entorno de trabajo
--------------------------------------------------------
-
-[Tutorial en video][]
+[Leccion 1. Nos familiarizamos con el entorno de trabajo](lecciones/leccion1.md)
+---------------------------------------------------------
 
 [Leccion 2. Vamos a crear un filtro](lecciones/leccion2.md)
 ------------------------------------
 
 
-# Licencia
+Licencia
+--------
 
 __Angular Testing Tutorial__ se distribuye bajo licencia del [MIT](http://opensource.org/licenses/MIT)
 
