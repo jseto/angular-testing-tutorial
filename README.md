@@ -36,15 +36,15 @@ Leccion 2. Vamos a crear un filtro
 
 [Tutorial en video][]
 
-Empezaremos por algo sencillo. Un filtro de AngularJS es fácil de crear, tanto el test como la implementación. Lo que va hacer nuestro primer filtro será poner en mayúsculas todas las palabras de una cadena, a excepción de los artículos, que estarán en minúscula a no ser que inicien la cadena. A nuestro filtro le llamaremos 'capitalizar'.
+Empezaremos por algo sencillo. Un filtro de AngularJS es fácil de crear, tanto el test como la implementación. Lo que va hacer nuestro primer filtro será poner en mayúsculas todas las palabras de una cadena, a excepción de artículos y preposiciones, que estarán en minúscula a no ser que inicien la cadena. A nuestro filtro le llamaremos 'capitalizar'.
 
 Siguiendo los principios del Desarrollo Orientado a Tests (TDD), antes de hacer la implementación, debemos codificar el test. El test lo vamos a definir siguiendo las especificaciones de nuestro filtro, es decir, vamos a escribir que es lo que va a hacer el filtro. Ademas, las escribiremos de la siguiente forma para que nos quede más claro.
 
 ```
 Dada una cadena, el filtro capitalizar
 	debería poner todas las palabras con la primera letra en mayúscula
-	debería devolver las palabras que sean artículos en minúsculas
-	debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas
+	debería devolver las palabras que sean artículos o preposiciones en minúsculas
+	debería poner la primera letra de la cadena en mayúsculas independientemente del tipo de palabra
 ```
 Seguimos teniendo nuestras especificaciones en español normal, pero así quedan más claras que cuando definimos nuestro filtro un poco más arriba. 
 
@@ -63,7 +63,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 
 	});
 
-	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
+	it('debería poner la primera letra de la cadena en mayúsculas independientemente del tipo de palabra', function() {
 
 	});
 });
@@ -90,7 +90,7 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 
 	});
 
-	it('debería poner la primera palabra de la cadena siempre con la primera letra en mayúsculas', function() {
+	it('debería poner la primera letra de la cadena en mayúsculas independientemente del tipo de palabra', function() {
 
 	});
 });
