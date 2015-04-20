@@ -279,10 +279,96 @@ angular.module( 'utiles', [] )
 }); 
 ```
 
-Puedes comprobarlo haciendo
+Puedes comprobarlo haciendo en la linea de comandos
 
 ```
 git checkout -f leccion2-4
+```
+y para completar los tests, necesitaras el siguiente código o algo similar
+
+```js
+'use strict';
+
+angular.module( 'utiles', [] )
+
+.filter( 'capitalizar', function capitalizarFn(){
+	return function( input ) {
+		var palabras = input.split(' ');
+		var output = [];
+		var articulos = 'el, la, los, las, un, una, unos, unas, lo, al, del'.split(', ');
+		var preposiciones = 'a, ante, bajo, cabe, con, contra, de, desde, en, entre, hacia, hasta, para, por, según, sin, so, sobre, tras'.split(', ');
+		var excepciones = articulos.concat( preposiciones );
+
+		angular.forEach( palabras, function( palabra, index ){
+			if ( excepciones.indexOf( palabra ) < 0 || index === 0 ) {
+				palabra = palabra[0].toUpperCase() + palabra.slice(1);
+			}
+			output.push( palabra );
+		});
+
+		return output.join(' ');
+	};
+}); 
+```
+
+que puedes obtener escribiendo
+
+```
+git checkout -f leccion2-5
+```
+Como veras, todos los test pasan. De todas formas, seguramente te has preguntado si los test que hemos escritos son suficientes. La respuesta es no. Los test deben ser independientes de la implementación y si alguien cambia la implementación en un futuro y olvida incluir algunas preposiciones, los test podrían llegar a pasar y el código no ser correcto. Así pues, vamos a añadir una expectativa más para hacer el test más completo.
+
+```js
+	it('debería funcionar con todos los artículos y preposiciones', function(){
+		var cadena = 'a el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
+		var resultadoEsperado = 'A el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
+		expect( capitalizarFilter( cadena ) ).toBe( resultadoEsperado );
+	});
+```
+
+Ahora ya ha llegado el momento de poder disfrutar de nuestra creación. Vamos a jugar con el filtro en una pagina web y vamos a probar nuestro filtro a la antigua!
+
+Para ello vamos a cargar `capitalizar.js` en el `index.html` y añadir código para poder entrar un texto y que nos lo presente filtrado
+
+```html
+	<input ng-model="cadena" />
+	<p>{{cadena|capitalizar}}</p>
+
+	<script src="utiles/capitalizar.js"></script>
+```
+y también debemos modificar el archivo `app.js` para que cargue el modulo _utiles_ al que pertenece nuestro filtro
+
+```js
+angular.module('app', [
+	'utiles'
+])
+```
+estos cambios los tienes en
+
+```
+git checkout -f leccion2-6
+```
+
+Hay algo que no esta bien. Cuando la cadena esta vacía, nuestro filtro genera un error que podemos ver en la consola del navegador y un efecto colateral es que se presenta la cadena `{{cadena|capitalizar}}`. Esto es claramente un _bug_ y hay que corregirlo. Para ello crearemos otro test que compruebe que cuando pasamos una cadena vacía, se devuelva una cadena vacía. Siempre que descubrimos un _bug_ hay que generar un test para corregir ese _bug_. Así añadiremos el siguiente código a nuestro test
+
+```js
+	it('debería devolver cadena vacía si se pasa cadena vacía', function(){
+		expect( capitalizarFilter( '' ) ).toBe( '' );
+	});
+```
+
+comprobamos que el test falla y luego corregimos la implementación para que deje de fallar. Añadiendo el siguiente codigo a la implementación deberia corregir nuestro error.
+
+```js
+		if ( !input ) {
+			return '';
+		}
+```
+
+Todas estas correcciones estan en:
+
+```
+git checkout -f leccion2-7
 ```
 
 
