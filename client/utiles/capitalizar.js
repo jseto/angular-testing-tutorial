@@ -2,7 +2,7 @@
 
 angular.module( 'utiles', [] )
 
-.filter( 'capitalizar', function capitalizarFactory(){
+.filter( 'capitalizar', function capitalizarFn(){
 	return function( input ) {
 		var palabras = input.split(' ');
 		var output = [];
