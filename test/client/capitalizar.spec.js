@@ -30,4 +30,10 @@ describe('Dada una cadena, el filtro capitalizar', function() {
 
 		expect( resultado ).toBe( 'La Lola de España' );
 	});
+
+	it('debería funcionar con todos los artículos y preposiciones', function(){
+		var cadena = 'a el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
+		var resultadoEsperado = 'A el la los las un una unos unas lo al del a ante bajo cabe con contra de desde en entre hacia hasta para por según sin so sobre tras';
+		expect( capitalizarFilter( cadena ) ).toBe( resultadoEsperado );
+	});
 });

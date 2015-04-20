@@ -15,7 +15,13 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
+	<div style="padding: 30px;">
+		<input ng-model="cadena" />
+		<p>{{cadena|capitalizar}}</p>
+	</div>
+
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="utiles/capitalizar.js"></script>
 	<script src="app.js"></script>
 </head>
 
