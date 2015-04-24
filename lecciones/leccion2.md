@@ -1,7 +1,7 @@
 Leccion 2. Vamos a crear un filtro
 ----------------------------------
 
-[Tutorial en video]()
+[Tutorial en video](https://youtu.be/pYf9bY4SdcA)
 
 Empezaremos por algo sencillo. Un filtro de AngularJS es fácil de crear, tanto el test como la implementación. Lo que va a hacer nuestro primer filtro será poner en mayúsculas todas las palabras de una cadena, a excepción de artículos y preposiciones, que estarán en minúscula, a no ser que inicien la cadena. A nuestro filtro le llamaremos 'capitalizar'.
 
