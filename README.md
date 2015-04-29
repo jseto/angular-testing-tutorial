@@ -1,6 +1,8 @@
 Tutorial de test unitarios en AngularJS
 =======================================
 
+[![Join the chat at https://gitter.im/jseto/angular-testing-tutorial](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jseto/angular-testing-tutorial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 El tutorial revisa los conceptos básicos para hacer test unitarios en [AngularJS][angular] con [Jasmine][jasmine] y [Karma][karma]. 
 El proyecto esta basado en [js-seed][jsseed]. Puedes referirte a este proyecto para saber como usarlo y configurarlo.
 
