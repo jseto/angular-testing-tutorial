@@ -33,7 +33,7 @@ describe('El controlador AppCtrl', function() {
 
 ```
 
-Y empezamos a definir nuestros test. La dos primeras especificaciones son fáciles de implementar 
+Y empezamos a definir nuestros test. La dos primeras especificaciones son fáciles de implementar
 si hemos seguido la lección 2 del tutorial y el test quedaría así:
 
 
@@ -47,7 +47,7 @@ describe('El controlador AppCtrl', function() {
 
 	it('debería incrementar un contador disponible en la vista', function() {
 		expect( scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 
 		expect( $scope.contador ).toBe( 1 );
@@ -60,23 +60,23 @@ describe('El controlador AppCtrl', function() {
 });
 ```
 
-La tercera especificación es un poco más difícil de implementar aunque hay diversas opciones. 
+La tercera especificación es un poco más difícil de implementar aunque hay diversas opciones.
 La más elegante es usar los espías de Jasmine. Un espía, lo que hace es precisamente eso, espiar.
 En nuestro caso espiará si se ha invocado el método $emit del objecto $scope.
 
-Para definir un espía usamos la función `spyOn`, que pondremos dentro de un `beforeEach`. 
-Como primer parámetro pasamos el objeto que contiene el método que queremos espiar, en nuestro 
-caso, `$scope` y el segundo parámetro es una cadena con el nombre del método, que para nosotros 
+Para definir un espía usamos la función `spyOn`, que pondremos dentro de un `beforeEach`.
+Como primer parámetro pasamos el objeto que contiene el método que queremos espiar, en nuestro
+caso, `$scope` y el segundo parámetro es una cadena con el nombre del método, que para nosotros
 sera '$emit'.
 
 `spyOn( $scope, '$emit' );`
 
-Para usar los espías, simplemente haremos uso del _matcher_ o verificador `toHaveBeenCalled()`. Así, 
+Para usar los espías, simplemente haremos uso del _matcher_ o verificador `toHaveBeenCalled()`. Así,
 escribiremos:
 
 `expect( $scope.$emit ).toHaveBeenCalled()`
 
-Que del ingles se traduce como 
+Que del ingles se traduce como
 
 > esperamos que `$scope.$emit` haya sido invocado
 
@@ -96,7 +96,7 @@ describe('El controlador AppCtrl', function() {
 
 	it('debería incrementar un contador disponible en la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 
 		expect( $scope.contador ).toBe( 1 );
@@ -104,7 +104,7 @@ describe('El controlador AppCtrl', function() {
 
 	it('debería emitir un mensaje cada vez que el contador llegue a tres', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
@@ -115,8 +115,8 @@ describe('El controlador AppCtrl', function() {
 });
 ```
 
-Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador. 
-Para ello, cargamos el controlador que estará en el modulo 'myApp', inyectamos `$rootScope` 
+Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador.
+Para ello, cargamos el controlador que estará en el modulo 'myApp', inyectamos `$rootScope`
 y asignamos una nueva instancia de `$rootScope` a nuestra variable `$scope`. Luego inyectamos
 el proveedor de controladores `$controller` para crear una instancia de nuestro controlador
 que guardaremos en `ctrl`. En el segundo parámetro del proveedor pasamos un objeto con
@@ -149,7 +149,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 
 	it('debería incrementar un contador disponible en la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 
 		expect( $scope.contador ).toBe( 1 );
@@ -157,7 +157,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 
 	it('debería emitir un mensaje cada vez que el contador llegue a tres', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
@@ -173,5 +173,11 @@ Si no lo quieres escribir, ejecuta en la linea de comando
 ```
 git checkout -f leccion3-1
 ```
+
+### La implementación del controlador ###
+
+Dado que nuestro controlador va a ser el controlador de la aplicación, vamos a aprovechar
+a aprovechar el fichero `app.js` para definir allí el controlador. Sustituimos el nombre
+del controlador por el nuestro `AppCtrl` e inyectamos `$scope`.
 
 [_Volver al indice_](../README.md)
