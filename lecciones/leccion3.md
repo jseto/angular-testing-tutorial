@@ -178,14 +178,44 @@ guardamos y verificamos que los test fallan
 
 ### La implementación del controlador ###
 
-Dado que nuestro controlador va a ser el controlador de la aplicación, vamos a aprovechar
-a aprovechar el fichero `app.js` para definir allí el controlador. Al controlador que
-tenemos por defecto le inyectamos `$scope` y vamos a crear la función `cuentaClicks`
+Vamos a codificar la implementación del cotrolador. Dado que va a ser el controlador
+de la aplicación, vamos a aprovechar el fichero `app.js` para definir allí el controlador. 
+Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la función 
+`cuentaClicks`
 
 ```js
 	$scope.cuentaClicks = function(){
 		$scope.contador += 1;
 	};
 ```
+
+al crear la función, también creamos el miembro `contador` y por tanto, en este paso se 
+verifican los dos primeros test.
+
+el codigo queda como
+
+```js
+angular.module('app', [
+	'utiles'
+])
+
+.controller('AppCtrl', function( $scope ){
+	$scope.contador = 0;
+
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+	};
+	
+});
+```
+
+lo tienes disponible escribiendo
+
+```
+git checkout -f leccion3-2
+```
+
+y veras que solo nos queda un test por verificar
+
 
 [_Volver al indice_](../README.md)
