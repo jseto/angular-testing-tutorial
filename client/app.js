@@ -5,6 +5,6 @@
 angular.module('app', [
 ])
 
-.controller('appController', function(){
+.controller('AppCtrl', function(){
 });
 
