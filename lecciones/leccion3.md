@@ -177,7 +177,13 @@ git checkout -f leccion3-1
 ### La implementación del controlador ###
 
 Dado que nuestro controlador va a ser el controlador de la aplicación, vamos a aprovechar
-a aprovechar el fichero `app.js` para definir allí el controlador. Sustituimos el nombre
-del controlador por el nuestro `AppCtrl` e inyectamos `$scope`.
+a aprovechar el fichero `app.js` para definir allí el controlador. Al controlador que
+tenemos por defecto le inyectamos `$scope` y vamos a crear la función `cuentaClicks`
+
+```js
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+	};
+```
 
 [_Volver al indice_](../README.md)
