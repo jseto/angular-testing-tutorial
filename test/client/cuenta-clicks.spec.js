@@ -7,8 +7,8 @@ describe('El controlador CuentaClicksCtrl', function() {
 	beforeEach( module( 'app' ) );
 
 	beforeEach( inject( function( $controller, $rootScope ){
-		scope = $rootScope.$new();
-		ctrl = $controller( 'AppCtrl', { $scope: scope });
+		$scope = $rootScope.$new();
+		ctrl = $controller( 'AppCtrl', { $scope: $scope });
 	}));
 
 	beforeEach(function(){
