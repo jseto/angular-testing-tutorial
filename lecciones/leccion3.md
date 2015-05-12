@@ -47,7 +47,7 @@ describe('El controlador AppCtrl', function() {
 
 	it('debería incrementar un contador disponible en la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 
 		expect( $scope.contador ).toBe( 1 );
@@ -60,23 +60,23 @@ describe('El controlador AppCtrl', function() {
 });
 ```
 
-La tercera especificación es un poco más difícil de implementar aunque hay diversas opciones. 
+La tercera especificación es un poco más difícil de implementar aunque hay diversas opciones.
 La más elegante es usar los espías de Jasmine. Un espía, lo que hace es precisamente eso, espiar.
 En nuestro caso espiará si se ha invocado el método $emit del objecto $scope.
 
-Para definir un espía usamos la función `spyOn`, que pondremos dentro de un `beforeEach`. 
-Como primer parámetro pasamos el objeto que contiene el método que queremos espiar, en nuestro 
-caso, `$scope` y el segundo parámetro es una cadena con el nombre del método, que para nosotros 
+Para definir un espía usamos la función `spyOn`, que pondremos dentro de un `beforeEach`.
+Como primer parámetro pasamos el objeto que contiene el método que queremos espiar, en nuestro
+caso, `$scope` y el segundo parámetro es una cadena con el nombre del método, que para nosotros
 sera '$emit'.
 
 `spyOn( $scope, '$emit' );`
 
-Para usar los espías, simplemente haremos uso del _matcher_ o verificador `toHaveBeenCalled()`. Así, 
+Para usar los espías, simplemente haremos uso del _matcher_ o verificador `toHaveBeenCalled()`. Así,
 escribiremos:
 
 `expect( $scope.$emit ).toHaveBeenCalled()`
 
-Que del ingles se traduce como 
+Que del ingles se traduce como
 
 > esperamos que `$scope.$emit` haya sido invocado
 
@@ -96,7 +96,7 @@ describe('El controlador AppCtrl', function() {
 
 	it('debería incrementar un contador disponible en la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 
 		expect( $scope.contador ).toBe( 1 );
@@ -104,7 +104,7 @@ describe('El controlador AppCtrl', function() {
 
 	it('debería emitir un mensaje cada vez que el contador llegue a tres', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
@@ -115,7 +115,7 @@ describe('El controlador AppCtrl', function() {
 });
 ```
 
-Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador. 
+Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador.
 Para ello, cargamos el controlador que estará en el modulo `app`, inyectamos `$rootScope` 
 y asignamos una nueva instancia de `$rootScope` a nuestra variable `$scope`. Luego inyectamos
 el proveedor de controladores `$controller` para crear una instancia de nuestro controlador
@@ -149,7 +149,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 
 	it('debería incrementar un contador disponible en la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 
 		expect( $scope.contador ).toBe( 1 );
@@ -157,7 +157,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 
 	it('debería emitir un mensaje cada vez que el contador llegue a tres', function() {
 		expect( $scope.contador ).toBe( 0 );
-		
+
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
 		$scope.cuentaClicks();
@@ -175,5 +175,113 @@ git checkout -f leccion3-1
 ```
 
 guardamos y verificamos que los test fallan
+
+### La implementación del controlador ###
+
+Vamos a codificar la implementación del cotrolador. Dado que va a ser el controlador
+de la aplicación, vamos a aprovechar el fichero `app.js` para definir allí el controlador. 
+Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la función 
+`cuentaClicks`
+
+```js
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+	};
+```
+
+al crear la función, también creamos el miembro `contador` y por tanto, en este paso se 
+verifican los dos primeros test.
+
+el codigo queda como
+
+```js
+angular.module('app', [
+	'utiles'
+])
+
+.controller('AppCtrl', function( $scope ){
+	$scope.contador = 0;
+
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+	};
+	
+});
+```
+
+lo tienes disponible escribiendo
+
+```
+git checkout -f leccion3-2
+```
+
+y veras que solo nos queda un test por verificar
+
+### Notificando tres clicks ###
+
+Para notificar los 3 clicks, simplemente llamamos al metodo `$emit` de `$scope`
+cuando la cuenta llegue a 3. El codigo queda asi
+
+```js
+angular.module('app', [
+	'utiles'
+])
+
+.controller('AppCtrl', function( $scope ){
+	$scope.contador = 0;
+
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+		if ( $scope.contador >= 3 ) {
+			$scope.$emit( 'click3Veces' );
+		}
+	};
+	
+});
+```
+
+y además verificamos que todos nuetros test estan pasando.
+
+El código completo lo puedes obtener escribiendo en la linea de comando:
+
+```
+git checkout -f leccion3-3
+```
+
+### Llega el momento de jugar ###
+
+Vamos a crear un boton en el archivo `index.html` que será el que tenga asociado el metodo `cuentaClicks`
+y vamos a mostrar el numero de veces que hemos hecho _click_ en el botón.
+
+```html
+	<div style="padding: 30px;">
+		<button ng-click="cuentaClicks()">Clickeame!</button>
+		<p>Has pulsado el botón {{contador}} veces</p>
+	</div>
+```
+
+Aha! funciona. Para ver la funcionalidad de `$emit` simplemente vamos a escuchar en el evento `click3Veces`
+y pondremos a cero el contador. Esto lo hacemos en el controlador.
+
+```js
+	$scope.$on( 'click3Veces', function(){
+		$scope.contador = 0;
+	});
+```
+
+Tienes el código completo haciendo
+
+```
+git checkout -f leccion3-4
+```
+
+### Que debemos recordar ###
+
+En esta lección hemos abordado los test de un controlador y los espias de Jasmine. Por lo tanto, recordaremos que
+
+* Que podemos observar la invocación de métodos con los espias de Jasmine
+* Que debemos crear una instancia del controlador con el proveedor `$controller` para hacer los test sobre esa instancia
+* Que podemos inyectar un $scope propio en el controlador teniendo asi control sobre el _scope_ del controlador
+
 
 [_Volver al indice_](../README.md)
