@@ -7,7 +7,7 @@
 
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-	<link rel="stylesheet" href="app.css"> 
+	<link rel="stylesheet" href="app.css">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -15,16 +15,17 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-	<div style="padding: 30px;">
-		<input ng-model="cadena" />
-		<p>{{cadena|capitalizar}}</p>
-	</div>
-
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="utiles/capitalizar.js"></script>
 	<script src="app.js"></script>
 </head>
 
 <body>
+
+	<div style="padding: 30px;">
+		<input ng-model="cadena" />
+		<p>{{cadena|capitalizar}}</p>
+	</div>
+
 </body>
 </html>
