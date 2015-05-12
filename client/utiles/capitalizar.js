@@ -23,4 +23,4 @@ angular.module( 'utiles', [] )
 
 		return output.join(' ');
 	};
-}); 
+});
