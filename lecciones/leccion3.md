@@ -33,7 +33,7 @@ describe('El controlador AppCtrl', function() {
 
 ```
 
-Y empezamos a definir nuestros test. La dos primeras especificaciones son fáciles de implementar
+Y empezamos a definir nuestros test. La dos primeras especificaciones son fáciles de implementar 
 si hemos seguido la lección 2 del tutorial y el test quedaría así:
 
 
@@ -46,7 +46,7 @@ describe('El controlador AppCtrl', function() {
 	});
 
 	it('debería incrementar un contador disponible en la vista', function() {
-		expect( scope.contador ).toBe( 0 );
+		expect( $scope.contador ).toBe( 0 );
 
 		$scope.cuentaClicks();
 
@@ -116,7 +116,7 @@ describe('El controlador AppCtrl', function() {
 ```
 
 Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador.
-Para ello, cargamos el controlador que estará en el modulo 'myApp', inyectamos `$rootScope`
+Para ello, cargamos el controlador que estará en el modulo `app`, inyectamos `$rootScope` 
 y asignamos una nueva instancia de `$rootScope` a nuestra variable `$scope`. Luego inyectamos
 el proveedor de controladores `$controller` para crear una instancia de nuestro controlador
 que guardaremos en `ctrl`. En el segundo parámetro del proveedor pasamos un objeto con
@@ -132,11 +132,11 @@ describe('El controlador CuentaClicksCtrl', function() {
 	var $scope;
 	var ctrl;
 
-	beforeEach( module( 'myApp' ) );
+	beforeEach( module( 'app' ) );
 
 	beforeEach( inject( function( $controller, $rootScope ){
-		scope = $rootScope.$new();
-		ctrl = $controller( 'AppCtrl', { $scope: scope });
+		$scope = $rootScope.$new();
+		ctrl = $controller( 'AppCtrl', { $scope: $scope });
 	}));
 
 	beforeEach(function(){
@@ -174,10 +174,114 @@ Si no lo quieres escribir, ejecuta en la linea de comando
 git checkout -f leccion3-1
 ```
 
+guardamos y verificamos que los test fallan
+
 ### La implementación del controlador ###
 
-Dado que nuestro controlador va a ser el controlador de la aplicación, vamos a aprovechar
-a aprovechar el fichero `app.js` para definir allí el controlador. Sustituimos el nombre
-del controlador por el nuestro `AppCtrl` e inyectamos `$scope`.
+Vamos a codificar la implementación del cotrolador. Dado que va a ser el controlador
+de la aplicación, vamos a aprovechar el fichero `app.js` para definir allí el controlador. 
+Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la función 
+`cuentaClicks`
+
+```js
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+	};
+```
+
+al crear la función, también creamos el miembro `contador` y por tanto, en este paso se 
+verifican los dos primeros test.
+
+el codigo queda como
+
+```js
+angular.module('app', [
+	'utiles'
+])
+
+.controller('AppCtrl', function( $scope ){
+	$scope.contador = 0;
+
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+	};
+	
+});
+```
+
+lo tienes disponible escribiendo
+
+```
+git checkout -f leccion3-2
+```
+
+y veras que solo nos queda un test por verificar
+
+### Notificando tres clicks ###
+
+Para notificar los 3 clicks, simplemente llamamos al metodo `$emit` de `$scope`
+cuando la cuenta llegue a 3. El codigo queda asi
+
+```js
+angular.module('app', [
+	'utiles'
+])
+
+.controller('AppCtrl', function( $scope ){
+	$scope.contador = 0;
+
+	$scope.cuentaClicks = function(){
+		$scope.contador += 1;
+		if ( $scope.contador >= 3 ) {
+			$scope.$emit( 'click3Veces' );
+		}
+	};
+	
+});
+```
+
+y además verificamos que todos nuetros test estan pasando.
+
+El código completo lo puedes obtener escribiendo en la linea de comando:
+
+```
+git checkout -f leccion3-3
+```
+
+### Llega el momento de jugar ###
+
+Vamos a crear un boton en el archivo `index.html` que será el que tenga asociado el metodo `cuentaClicks`
+y vamos a mostrar el numero de veces que hemos hecho _click_ en el botón.
+
+```html
+	<div style="padding: 30px;">
+		<button ng-click="cuentaClicks()">Clickeame!</button>
+		<p>Has pulsado el botón {{contador}} veces</p>
+	</div>
+```
+
+Aha! funciona. Para ver la funcionalidad de `$emit` simplemente vamos a escuchar en el evento `click3Veces`
+y pondremos a cero el contador. Esto lo hacemos en el controlador.
+
+```js
+	$scope.$on( 'click3Veces', function(){
+		$scope.contador = 0;
+	});
+```
+
+Tienes el código completo haciendo
+
+```
+git checkout -f leccion3-4
+```
+
+### Que debemos recordar ###
+
+En esta lección hemos abordado los test de un controlador y los espias de Jasmine. Por lo tanto, recordaremos que
+
+* Que podemos observar la invocación de métodos con los espias de Jasmine
+* Que debemos crear una instancia del controlador con el proveedor `$controller` para hacer los test sobre esa instancia
+* Que podemos inyectar un $scope propio en el controlador teniendo asi control sobre el _scope_ del controlador
+
 
 [_Volver al indice_](../README.md)
