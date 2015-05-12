@@ -46,7 +46,7 @@ describe('El controlador AppCtrl', function() {
 	});
 
 	it('debería incrementar un contador disponible en la vista', function() {
-		expect( scope.contador ).toBe( 0 );
+		expect( $scope.contador ).toBe( 0 );
 		
 		$scope.cuentaClicks();
 
@@ -135,8 +135,8 @@ describe('El controlador CuentaClicksCtrl', function() {
 	beforeEach( module( 'app' ) );
 
 	beforeEach( inject( function( $controller, $rootScope ){
-		scope = $rootScope.$new();
-		ctrl = $controller( 'AppCtrl', { $scope: scope });
+		$scope = $rootScope.$new();
+		ctrl = $controller( 'AppCtrl', { $scope: $scope });
 	}));
 
 	beforeEach(function(){
