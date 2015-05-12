@@ -6,6 +6,6 @@ angular.module('app', [
 	'utiles'
 ])
 
-.controller('appController', function(){
+.controller('AppCtrl', function(){
 });
 
