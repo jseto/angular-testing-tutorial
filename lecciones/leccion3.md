@@ -116,7 +116,7 @@ describe('El controlador AppCtrl', function() {
 ```
 
 Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador.
-Para ello, cargamos el controlador que estará en el modulo 'myApp', inyectamos `$rootScope`
+Para ello, cargamos el controlador que estará en el modulo 'app', inyectamos `$rootScope`
 y asignamos una nueva instancia de `$rootScope` a nuestra variable `$scope`. Luego inyectamos
 el proveedor de controladores `$controller` para crear una instancia de nuestro controlador
 que guardaremos en `ctrl`. En el segundo parámetro del proveedor pasamos un objeto con
@@ -132,7 +132,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 	var $scope;
 	var ctrl;
 
-	beforeEach( module( 'myApp' ) );
+	beforeEach( module( 'app' ) );
 
 	beforeEach( inject( function( $controller, $rootScope ){
 		scope = $rootScope.$new();
