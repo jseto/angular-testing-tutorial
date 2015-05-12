@@ -174,4 +174,6 @@ Si no lo quieres escribir, ejecuta en la linea de comando
 git checkout -f leccion3-1
 ```
 
+guardamos y verificamos que los test fallan
+
 [_Volver al indice_](../README.md)
