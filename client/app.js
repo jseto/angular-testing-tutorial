@@ -3,6 +3,7 @@
 //* App Module 
 
 angular.module('app', [
+	'utiles'
 ])
 
 .controller('appController', function(){
