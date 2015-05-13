@@ -62,12 +62,12 @@ describe('El controlador AppCtrl', function() {
 
 La tercera especificación es un poco más difícil de implementar aunque hay diversas opciones.
 La más elegante es usar los espías de Jasmine. Un espía, lo que hace es precisamente eso, espiar.
-En nuestro caso espiará si se ha invocado el método $emit del objecto $scope.
+En nuestro caso espiará si se ha invocado el método `$emit` del objecto `$scope`.
 
 Para definir un espía usamos la función `spyOn`, que pondremos dentro de un `beforeEach`.
 Como primer parámetro pasamos el objeto que contiene el método que queremos espiar, en nuestro
 caso, `$scope` y el segundo parámetro es una cadena con el nombre del método, que para nosotros
-sera '$emit'.
+sera '_$emit_'.
 
 `spyOn( $scope, '$emit' );`
 
