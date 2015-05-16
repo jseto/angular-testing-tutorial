@@ -13,9 +13,9 @@ Dada una cadena, el filtro capitalizar
 	debería devolver las palabras que sean artículos o preposiciones en minúsculas
 	debería poner la primera letra de la cadena en mayúsculas independientemente del tipo de palabra
 ```
-Seguimos teniendo nuestras especificaciones en español normal, pero así quedan más claras que cuando definimos nuestro filtro un poco más arriba. 
+Seguimos teniendo nuestras especificaciones en español normal, pero así quedan más claras que cuando definimos nuestro filtro un poco más arriba.
 
-Los que usáis [Sublime Text][sublime] como editor, podéis instalaros el _plugin_ [Jasmine Scaffold][jasmine-scaffold] que convierte el texto de la especificación anterior en sintaxis para **Jasmine**. [Jasmine][jasmine] provee una serie de funciones que nos facilitan la escritura de test en JavaScript. 
+Los que usáis [Sublime Text][sublime] como editor, podéis instalaros el _plugin_ [Jasmine Scaffold][jasmine-scaffold] que convierte el texto de la especificación anterior en sintaxis para **Jasmine**. [Jasmine][jasmine] provee una serie de funciones que nos facilitan la escritura de test en JavaScript.
 
 Ahora vamos a usar las funciones `describe` e `it`. Así, nuestro test va a tomar la siguiente forma:
 
@@ -131,7 +131,7 @@ Ahora, nuestro trabajo consiste en hacer que el test no falle.
 ### Primera aproximación a nuestro filtro ###
 
 
-El mensaje de error que nos da el test es 
+El mensaje de error que nos da el test es
 
 ```
 ReferenceError: capitalizarFilter is not defined
@@ -245,7 +245,7 @@ angular.module( 'utiles', [] )
 		});
 		return output.join(' ');
 	};
-}); 
+});
 ```
 
 Puedes comprobarlo haciendo en la linea de comandos
@@ -277,7 +277,7 @@ angular.module( 'utiles', [] )
 
 		return output.join(' ');
 	};
-}); 
+});
 ```
 
 que puedes obtener escribiendo
