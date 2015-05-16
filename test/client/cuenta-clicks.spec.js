@@ -13,7 +13,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 
 	beforeEach(function(){
 		spyOn( $scope, '$emit' );
-	})
+	});
 
 	it('debería proveer una función para manejar los eventos del botón', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
