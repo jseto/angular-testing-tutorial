@@ -15,11 +15,11 @@ describe('El controlador CuentaClicksCtrl', function() {
 		spyOn( $scope, '$emit' );
 	})
 
-	it('debería proveer una función para manejar los eventos ngClick', function() {
+	it('debería proveer una función para manejar los eventos del botónk', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
-	it('debería incrementar un contador disponible en la vista', function() {
+	it('debería incrementar un contador por cada click y que este disponible para la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
 		
 		$scope.cuentaClicks();
