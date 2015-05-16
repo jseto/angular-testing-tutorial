@@ -17,7 +17,7 @@ Convertimos las especificaciones a sintaxis Jasmine.
 ```js
 describe('El controlador AppCtrl', function() {
 
-	it('debería proveer una función para manejar los eventos ngClick', function() {
+	it('debería proveer una función para manejar los eventos del botón', function() {
 
 	});
 
@@ -41,7 +41,7 @@ si hemos seguido la lección 2 del tutorial y el test quedaría así:
 describe('El controlador AppCtrl', function() {
 	var $scope;
 
-	it('debería proveer una función para manejar los eventos ngClick', function() {
+	it('debería proveer una función para manejar los eventos del botón', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
@@ -90,7 +90,7 @@ describe('El controlador AppCtrl', function() {
 		spyOn( $scope, '$emit' );
 	})
 
-	it('debería proveer una función para manejar los eventos ngClick', function() {
+	it('debería proveer una función para manejar los eventos del botón', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
@@ -143,7 +143,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 		spyOn( $scope, '$emit' );
 	})
 
-	it('debería proveer una función para manejar los eventos ngClick', function() {
+	it('debería proveer una función para manejar los eventos del botón', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
