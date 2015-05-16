@@ -7,8 +7,8 @@ Siguiendo el patrón de la lección anterior, vamos a escribir las especificacio
 
 ```
 El controlador AppCtrl
-	debería proveer una función para manejar los eventos ngClick
-	debería incrementar un contador disponible en la vista
+	debería proveer una función para manejar los eventos del botón
+	debería incrementar un contador por cada click y que este disponible para la vista
 	debería emitir un mensaje cada vez que el contador llegue a tres
 ```
 
@@ -21,7 +21,7 @@ describe('El controlador AppCtrl', function() {
 
 	});
 
-	it('debería incrementar un contador disponible en la vista', function() {
+	it('debería incrementar un contador por cada click y que este disponible para la vista', function() {
 
 	});
 
@@ -33,7 +33,7 @@ describe('El controlador AppCtrl', function() {
 
 ```
 
-Y empezamos a definir nuestros test. La dos primeras especificaciones son fáciles de implementar 
+Y empezamos a definir nuestros test. La dos primeras especificaciones son fáciles de implementar
 si hemos seguido la lección 2 del tutorial y el test quedaría así:
 
 
@@ -45,7 +45,7 @@ describe('El controlador AppCtrl', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
-	it('debería incrementar un contador disponible en la vista', function() {
+	it('debería incrementar un contador por cada click y que este disponible para la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
 
 		$scope.cuentaClicks();
@@ -94,7 +94,7 @@ describe('El controlador AppCtrl', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
-	it('debería incrementar un contador disponible en la vista', function() {
+	it('debería incrementar un contador por cada click y que este disponible para la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
 
 		$scope.cuentaClicks();
@@ -116,7 +116,7 @@ describe('El controlador AppCtrl', function() {
 ```
 
 Ahora solo nos queda definir la variable `$scope` que esta asociada a nuestro controlador.
-Para ello, cargamos el controlador que estará en el modulo `app`, inyectamos `$rootScope` 
+Para ello, cargamos el controlador que estará en el modulo `app`, inyectamos `$rootScope`
 y asignamos una nueva instancia de `$rootScope` a nuestra variable `$scope`. Luego inyectamos
 el proveedor de controladores `$controller` para crear una instancia de nuestro controlador
 que guardaremos en `ctrl`. En el segundo parámetro del proveedor pasamos un objeto con
@@ -147,7 +147,7 @@ describe('El controlador CuentaClicksCtrl', function() {
 		expect( $scope.cuentaClicks ).toBeDefined();
 	});
 
-	it('debería incrementar un contador disponible en la vista', function() {
+	it('debería incrementar un contador por cada click y que este disponible para la vista', function() {
 		expect( $scope.contador ).toBe( 0 );
 
 		$scope.cuentaClicks();
@@ -179,8 +179,8 @@ guardamos y verificamos que los test fallan
 ### La implementación del controlador ###
 
 Vamos a codificar la implementación del cotrolador. Dado que va a ser el controlador
-de la aplicación, vamos a aprovechar el fichero `app.js` para definir allí el controlador. 
-Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la función 
+de la aplicación, vamos a aprovechar el fichero `app.js` para definir allí el controlador.
+Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la función
 `cuentaClicks`
 
 ```js
@@ -189,7 +189,7 @@ Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la funci
 	};
 ```
 
-al crear la función, también creamos el miembro `contador` y por tanto, en este paso se 
+al crear la función, también creamos el miembro `contador` y por tanto, en este paso se
 verifican los dos primeros test.
 
 el codigo queda como
@@ -205,7 +205,7 @@ angular.module('app', [
 	$scope.cuentaClicks = function(){
 		$scope.contador += 1;
 	};
-	
+
 });
 ```
 
@@ -236,7 +236,7 @@ angular.module('app', [
 			$scope.$emit( 'click3Veces' );
 		}
 	};
-	
+
 });
 ```
 
