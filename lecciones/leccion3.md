@@ -178,7 +178,7 @@ guardamos y verificamos que los test fallan
 
 ### La implementación del controlador ###
 
-Vamos a codificar la implementación del cotrolador. Dado que va a ser el controlador
+Vamos a codificar la implementación del controlador. Dado que va a ser el controlador
 de la aplicación, vamos a aprovechar el fichero `app.js` para definir allí el controlador.
 Al controlador que tenemos por defecto le inyectamos `$scope` y creamos la función
 `cuentaClicks`
