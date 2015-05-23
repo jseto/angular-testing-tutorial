@@ -17,6 +17,7 @@
 
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="utiles/capitalizar.js"></script>
+	<script src="utiles/estrellas.js"></script>
 	<script src="app.js"></script>
 </head>
 
@@ -30,6 +31,12 @@
 	<div style="padding: 30px;">
 		<button ng-click="cuentaClicks()">Clickeame!</button>
 		<p>Has pulsado el botón {{contador}} veces</p>
+	</div>
+
+	<div style="padding: 30px;">
+		<label>Indica la puntuación</label>
+		<input ng-model="puntuacion" />
+		<div estrellas="puntuacion"></div>
 	</div>
 
 </body>

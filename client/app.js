@@ -3,7 +3,8 @@
 //* App Module
 
 angular.module('app', [
-	'utiles'
+	'utiles',
+	'valoracion'
 ])
 
 .controller('AppCtrl', function( $scope ){
