@@ -20,7 +20,7 @@ La directiva estrellas
 		debería mostrar n estrellas rellenas para el puntuación r real
 ```
 
-convertimos las especificaciones a sintaxis de Jasmine
+convertimos las especificaciones a sintaxis de _Jasmine_
 
 
 ```js
@@ -63,7 +63,7 @@ el html que llama a la directiva. En nuestro caso, este será muy sencillo
 ```
 
 donde `estrellas` es el nombre de la directiva y `puntuacion` es un miembro del
-scope asociado.
+_scope_ asociado.
 
 La compilación de la cadena html la haremos inyectando `$compile` y `$rootScope`
 en un `beforeEach`. De `$rootScope` obtendremos una instancia que asociaremos al
@@ -186,6 +186,8 @@ Podéis encontrar el código haciendo
 git checkout -f leccion4-1
 ```
 
+### La implementación de la directiva ###
+
 La directiva es sencilla de implementar. Simplemente tendrá una plantilla con
 los cinco iconos de una estrella vacía y una función `link` que cambiará el
 icono de la estrella vacía a una estrella rellena según el estado de `puntuacion`
@@ -241,8 +243,56 @@ que podéis obtener escribiendo en la linea de comando:
 git checkout -f leccion4-2
 ```
 
+### Probando la directiva en el navegador ###
 
+Por ultimo solo nos queda ver como se comporta nuestra directiva en el navegador.
+Para ello añadimos en el fichero `index.html` el nuevo _script_
 
+```html
+	<script src="utiles/estrellas.js"></script>
+```
+
+y una etiqueta `div` con nuestra directiva y una etiqueta `input` para introducir el valor de
+la puntuación
+
+```html
+	<div style="padding: 30px;">
+		<label>Indica la puntuación</label>
+		<input ng-model="puntuacion" />
+		<div estrellas="puntuacion"></div>
+	</div>
+```
+
+y también cargamos el modulo de la directiva `valoracion` en el archivo `app.js`
+
+```js
+angular.module('app', [
+	'utiles',
+	'valoracion'
+])
+```
+
+Si no te funciona, encontraras el código completo aquí:
+
+```
+git checkout -f leccion4-3
+```
+
+### Que debemos recordar ###
+
+En esta lección solo hemos introducido un nuevo concepto que es la compilación de
+la directiva. De ello debemos recordar:
+
+* Que tenemos que compilar el código html donde llamaremos a la directiva que
+queremos testear con el servicio `$compile`
+* Al mismo tiempo que compilamos, asociamos un `$scope` que hemos instanciado y
+sobre el que tendremos control
+* Una vez compilado hay que llamar a `$digest` para que se inicie el proceso de
+actualización de los _data bindings_
+* Para cambiar los valores de los miembros de `$scope` lo haremos dentro del
+método `$apply` de nuestro `$scope`
+
+[_Volver al indice_](../README.md)
 
 [git]: http://git-scm.com/
 [bower]: http://bower.io
