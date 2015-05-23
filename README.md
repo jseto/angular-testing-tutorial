@@ -37,6 +37,9 @@ npm install
 [Lección 3. Un controlador robusto](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion3.md)
 -----------------------------------
 
+[Lección 4. Testeando una directiva](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion4.md)
+------------------------------------
+
 Licencia
 --------
 
