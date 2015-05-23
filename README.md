@@ -3,7 +3,7 @@ Tutorial de test unitarios en AngularJS
 
 [![Join the chat at https://gitter.im/jseto/angular-testing-tutorial](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jseto/angular-testing-tutorial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-El tutorial revisa los conceptos básicos para hacer test unitarios en [AngularJS][angular] con [Jasmine][jasmine] y [Karma][karma]. 
+El tutorial revisa los conceptos básicos para hacer test unitarios en [AngularJS][angular] con [Jasmine][jasmine] y [Karma][karma].
 El proyecto esta basado en [js-seed][jsseed]. Puedes referirte a este proyecto para saber como usarlo y configurarlo.
 
 Preparación
@@ -28,14 +28,17 @@ git clone https://github.com/jseto/angular-testing-tutorial.git
 npm install
 ```
 
-[Lección 1. Nos familiarizamos con el entorno de trabajo](lecciones/leccion1.md)
+[Lección 1. Nos familiarizamos con el entorno de trabajo](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion1.md)
 ---------------------------------------------------------
 
-[Lección 2. Vamos a crear un filtro](lecciones/leccion2.md)
+[Lección 2. Vamos a crear un filtro](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion2.md)
 ------------------------------------
 
-[Lección 3. Un controlador robusto](lecciones/leccion3.md)
+[Lección 3. Un controlador robusto](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion3.md)
 -----------------------------------
+
+[Lección 4. Testeando una directiva](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion4.md)
+------------------------------------
 
 Licencia
 --------
