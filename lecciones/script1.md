@@ -1,6 +1,6 @@
 Hola, hoy vamos a hablar del proyecto en el que están basados los tutoriales de test unitarios de Angular. Esto nos permitirá manejarnos con soltura a la hora de hacer pruebas con los tests.
 
-El tutorial, se ejecuta en un proyecto basado en js-seed. Para acceder a js-seed, podéis usar el enlace que se encuentra en el texto del tutorial. 
+El tutorial, se ejecuta en un proyecto basado en js-seed. Para acceder a js-seed, podéis usar el enlace que se encuentra en el texto del tutorial.
 
 Vamos a echar un pequeño vistazo. Aquí podéis ver todas las opciones que tiene este proyecto.
 
@@ -30,4 +30,4 @@ En `app.js` tenemos el esqueleto de una aplicación *Angular*, donde definimos e
 
 En `app.spec.js` tenemos el esqueleto de un test, con su función `describe` donde damos una pequeña descripción de lo que va a hacer nuestro test, un `beforeEach` en donde especificamos lo que se tiene que ejecutar antes de ejecutar cada uno de los test, en nuestro caso cargamos el modulo correspondiente a la aplicación de *Angular*. Y una función `it` donde vamos a escribir la especificación que esperamos que se cumpla. En este caso, una especificación trivial en la que esperamos que 0 sea igual a 0.
 
-Y hasta aquí nuestro pequeño repaso del proyecto en el que se basaran las siguientes lecciones sobre test unitarios en *AngularJS*. 
+Y hasta aquí nuestro pequeño repaso del proyecto en el que se basaran las siguientes lecciones sobre test unitarios en *AngularJS*.
