@@ -180,6 +180,69 @@ describe( 'La directiva estrellas', function() {
 Como siempre guardamos y verificamos que el test falla antes de proceder a la
 implementación de la directiva.
 
+Podéis encontrar el código haciendo
+
+```
+git checkout -f leccion4-1
+```
+
+La directiva es sencilla de implementar. Simplemente tendrá una plantilla con
+los cinco iconos de una estrella vacía y una función `link` que cambiará el
+icono de la estrella vacía a una estrella rellena según el estado de `puntuacion`
+que estaremos observando dentro de `$watch` a través del atributo `estrellas`. El
+código final quedaría como sigue:
+
+```js
+'use strict';
+
+angular.module('valoracion', [
+
+])
+
+.directive( 'estrellas', function(){
+    return {
+        restrict: 'AC',
+        template: function(){
+            return [
+                '<div>',
+                '    <span class="glyphicon glyphicon-star-empty"></span>',
+                '    <span class="glyphicon glyphicon-star-empty"></span>',
+                '    <span class="glyphicon glyphicon-star-empty"></span>',
+                '    <span class="glyphicon glyphicon-star-empty"></span>',
+                '    <span class="glyphicon glyphicon-star-empty"></span>',
+                '</div>'
+            ].join('\n');
+        },
+        link: function(scope, element, attrs) {
+            scope.$watch( attrs.estrellas, function( value, oldValue ){
+                var starElements = element.find('span');
+
+                angular.forEach( starElements, function( starEl, key ){
+                    var el = angular.element( starEl );
+                    el.removeClass( 'glyphicon-star-empty' );
+                    el.removeClass( 'glyphicon-star');
+
+                    if ( key < value ) {
+                        el.addClass( 'glyphicon-star' );
+                    }
+                    else {
+                        el.addClass( 'glyphicon-star-empty' );
+                    }
+                });
+            });
+        }
+    };
+});
+```
+
+que podéis obtener escribiendo en la linea de comando:
+
+```
+git checkout -f leccion4-2
+```
+
+
+
 
 [git]: http://git-scm.com/
 [bower]: http://bower.io

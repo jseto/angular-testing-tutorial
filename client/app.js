@@ -1,6 +1,6 @@
 'use strict';
 
-//* App Module 
+//* App Module
 
 angular.module('app', [
 	'utiles'
@@ -15,9 +15,8 @@ angular.module('app', [
 			$scope.$emit( 'click3Veces' );
 		}
 	};
-	
+
 	$scope.$on( 'click3Veces', function(){
 		$scope.contador = 0;
 	});
 });
-

@@ -1,12 +1,13 @@
 'use strict';
 
 describe( 'La directiva estrellas', function() {
-    var htmlText = '<div estrellas="valoracion"></div>';
     var el, scope;
 
     beforeEach( module('valoracion' ) );
 
     beforeEach( inject( function( $compile, $rootScope ) {
+		var htmlText = '<div estrellas="puntuacion"></div>';
+
         scope = $rootScope.$new();
         el = $compile( htmlText )( scope );
         scope.$digest();
@@ -21,7 +22,7 @@ describe( 'La directiva estrellas', function() {
 
         it( 'deberia mostrar las todas las estrellas huecas con puntuación 0', function() {
             scope.$apply( function(){
-                scope.valoracion = 0;
+                scope.puntuacion = 0;
             });
 
             var estrellasHuecas = el.find( '.glyphicon-star-empty' );
@@ -33,7 +34,7 @@ describe( 'La directiva estrellas', function() {
 
         it( 'deberia mostrar las todas las estrellas rellenas con puntuación 5', function() {
             scope.$apply( function(){
-                scope.valoracion = 5;
+                scope.puntuacion = 5;
             });
 
             var estrellasHuecas = el.find( '.glyphicon-star-empty' );
@@ -45,7 +46,7 @@ describe( 'La directiva estrellas', function() {
 
         it( 'deberia mostrar n estrellas rellenas para el puntuación n entero', function() {
             scope.$apply( function(){
-                scope.valoracion = 3;
+                scope.puntuacion = 3;
             });
 
             var estrellasHuecas = el.find( '.glyphicon-star-empty' );
@@ -57,7 +58,7 @@ describe( 'La directiva estrellas', function() {
 
         it( 'deberia mostrar n estrellas rellenas para el puntuación r real', function() {
             scope.$apply( function(){
-                scope.valoracion = 1.7;
+                scope.puntuacion = 1.7;
             });
 
             var estrellasHuecas = el.find( '.glyphicon-star-empty' );

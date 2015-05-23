@@ -32,6 +32,7 @@ module.exports = {
 	test:{
 		unit:{
 			files : [
+				path.bower + 'jquery/dist/jquery.js',
 				path.bower + 'angular/angular.js',
 				path.bower + 'angular-mocks/angular-mocks.js',
 				path.client + '*.js',
