@@ -40,7 +40,7 @@ npm install
 [Lección 4. Testeando una directiva](https://github.com/jseto/angular-testing-tutorial/tree/master/lecciones/leccion4.md)
 ------------------------------------
 
-# [Ejemplo de plugin para Blogs de Viajes con tests incluidos](https://wish-to-go.com/plans/)
+## [Leccion 5. Ejemplo de plugin para Blogs de Viajes con tests incluidos](https://wish-to-go.com/how-to-use/)
 
 Licencia
 --------
